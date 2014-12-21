@@ -11,11 +11,17 @@ makeCacheMatrix <- function(x = matrix()) {
         get <- function() x
         set.inverse <- function(inverse) cached.inverse <<- inverse
         get.inverse <- function() cached.inverse
+        list(set = set, get = set,
+             set.inverse = set.inverse, get.inverse = get.inverse)
 }
 
 
 # cacheSolve computes the inverse of the special "matrix" returned by 
 # makeCacheMatrix above.
+#
+# This will only yield a benefit with matrices constructed from the function
+# above. Specifically, it will be no faster to invert native R matrices compared
+# to calling solve() directly.
 #
 # If the inverse has already been calculated (and the matrix has not changed),
 # then cacheSolve should retrieve the inverse from the cache.
