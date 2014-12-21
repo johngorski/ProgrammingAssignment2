@@ -37,7 +37,10 @@ cacheSolve <- function(x, ...) {
                 # have a single exit point, at the end of the function, rather
                 # than one early exit point in the middle for the case of a
                 # cache hit and one at the end for a cache miss.
-                message("computing uncached inverse")
+                
+                # Uncomment this line to see caching behavior when debugging.
+                # message("computing uncached inverse")
+                
                 matrix <- x$get()
                 inverse <- solve(matrix, ...)
                 x$set.inverse(inverse)
